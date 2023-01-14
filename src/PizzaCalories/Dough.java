@@ -8,7 +8,7 @@ public class Dough {
 
     public Dough(String flourType, String bakingTechnique, double weight) {
         this.setFlourType(flourType);
-        this.bakingTechnique = bakingTechnique;
+        this.setBakingTechnique(bakingTechnique);
         this.setWeight(weight);
     }
 
@@ -27,5 +27,16 @@ public class Dough {
         this.flourType = flourType;
     }
 
+    public void setBakingTechnique(String bakingTechnique) {
+        if (!bakingTechnique.equals("Crispy") || !bakingTechnique.equals("Chewy") ||
+        !bakingTechnique.equals("Homemade")) {
+            throw new IllegalArgumentException("Invalid type of dough.");
+        }
+        this.bakingTechnique = bakingTechnique;
+    }
+
+    public double calculateCalories() {
+        return 0;
+    }
 
 }
