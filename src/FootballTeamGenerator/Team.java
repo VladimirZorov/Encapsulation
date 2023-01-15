@@ -19,15 +19,31 @@ public class Team {
     }
 
     public void setName(String name) {
+        if (name==null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("A name should not be empty.");
+        }
         this.name = name;
     }
 
     public void addPlayer(Player player) {
-        players.add(player);
+        if (this.players.contains(player)) {
+            this.players.add(player);
+        }
     }
 
     public void removePlayer(String name) {
-        players.remove(getName());
+        int index = -1;
+        for (int i = 0; i < this.players.size(); i++) {
+            if (this.players.get(i).getName().equals(name)){
+                index = i;
+                break;
+            }
+        }
+        if (index != -1){
+            this.players.remove(index);
+        } else {
+            throw new IllegalArgumentException(String.format("Player %s is not in %s team.", name, this.name));
+        }
     }
 
     public double getRating() {
